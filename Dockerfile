@@ -19,11 +19,42 @@ RUN python -m venv /py && \
   adduser \
   --disabled-password \
   --no-create-home \
-  django-user
+  django
 
-# RUN chown user:django-user -R /app/
-# RUN chmod +x /app
+# RUN whoami
+# RUN su django
+# RUN chmod u+rwx /app
 
 ENV PATH="/py/bin:$PATH"
+# RUN chown django app
+# RUN chgrp django app 
+# USER django
+# RUN whoami
+# RUN ls -l
+# RUN pwd
+# RUN chown root:django /app
+# RUN chgrp django app 
 
-USER django-user
+RUN chown django app
+RUN chgrp django app
+# RUN ls -l
+RUN chown django py/*/*
+RUN chgrp django py/*/*
+
+
+RUN chown django usr/local/bin/*
+RUN chgrp django usr/local/bin/*
+
+# RUN chown django python
+# RUN chgrp django python
+
+USER django
+
+# RUN cd ..
+# RUN ls -l
+
+# RUN cut -d: -f1 /etc/passwd
+
+# RUN cd py/bin && cat django-admin && ls -l
+# RUN cd usr/local/bin && ls -l
+# RUN  ls -l && cd..
