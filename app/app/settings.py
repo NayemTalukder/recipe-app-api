@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import sys
 from pathlib import Path
 import os
 
@@ -81,9 +82,13 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST'),
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS')
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
+
+if 'test' in sys.argv or 'test\_coverage' in sys.argv:  # Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+    DATABASES['default']['NAME'] = ':memory:'
 
 
 # Password validation
