@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    # 'res_framework',
-    # 'res_framework.authtoken',
+    'rest_framework',
+    'rest_framework.authtoken',
     'drf_spectacular',
+    'core',
     'user',
 ]
 
