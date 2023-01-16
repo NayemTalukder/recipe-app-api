@@ -11,7 +11,7 @@ from rest_framework import status
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
-NE_URL = reverse('user:me')
+ME_URL = reverse('user:me')
 
 
 def create_user(**params):
@@ -107,7 +107,7 @@ class PublicUserApiTesta(TestCase):
         """Test authentication is required for users."""
         res = self.client.get(ME_URL)
 
-        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED, second)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def PrivateUserApiTests(TestCase):
         """Test API requests that require authentication."""
