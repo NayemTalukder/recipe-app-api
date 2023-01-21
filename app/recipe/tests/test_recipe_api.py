@@ -30,8 +30,8 @@ def create_recipe(user, **params):
         'title': 'Sample recipe title.',
         'time_minutes': 22,
         'price': Decimal('5.25'),
-        'description': 'Sample Description',
         'link': 'http://example.com/recipe.pdf',
+        'description': 'Sample Description',
     }
     defaults.update(params)
 
@@ -95,7 +95,8 @@ class PrivateRecipeTests(TestCase):
     def test_get_recipe_details(self):
         """test get recipe details."""
         recipe = create_recipe(user=self.user)
-        url = detail_url(recipe_id)
+
+        url = detail_url(recipe.id)
         res = self.client.get(url)
 
         serializer = RecipeDetailSerializer(recipe)
