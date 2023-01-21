@@ -7,7 +7,7 @@ from core.models import Recipe
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    """Serializer for recipe"""
+    """Serializer for recipes."""
 
     class Meta:
         model = Recipe
