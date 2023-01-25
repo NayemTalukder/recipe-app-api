@@ -36,9 +36,9 @@ class PunlicIngredientsApiTests(TestCase):
 class PrivateIngredientsApiTests(TestCase):
     """Test authenticated API requests."""
 
-    def setup(self):
-        self.client = APIClient()
+    def setUp(self):
         self.user = create_user()
+        self.client = APIClient()
         self.client.force_authenticate(self.user)
 
     def test_retrive_ingredients(self):
@@ -46,7 +46,7 @@ class PrivateIngredientsApiTests(TestCase):
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Vanilla')
 
-        res = self.client(INGREDIENTS_URL)
+        res = self.client.get(INGREDIENTS_URL)
 
         ingredients = Ingredient.objects.all().order_by('-name')
         serializer = IngredientSerializer(ingredients, many=True)
